@@ -11,13 +11,20 @@ def testForExif(imgFile):
 		for (tag,value) in info.items():
 			decoded = TAGS.get(tag, tag)
 			exifData[decoded] = value
-		for campo,valor in exifData.items():
-			print '[+] ' + str(campo) + ' : ' + str(valor)
+		return exifData
 	else:
 		print "No se han encontrado metadatos."
 
+def imprimirDatos(datos):
+	for campo,valor in datos.items():
+		print '[+] ' + str(campo) + ' : ' + str(valor)
+
 photo = Image.open(sys.argv[1])
 if (photo.format == 'JPEG'):
-	testForExif(photo)
+	metadatos = testForExif(photo)
+	if (metadatos):
+		imprimirDatos(metadatos)
+elif (photo.format == 'PNG'):
+	imprimirDatos(photo.info)
 else:
 	print "Introduce una imagen con extensión JPEG"
