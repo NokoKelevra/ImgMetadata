@@ -27,4 +27,4 @@ if (photo.format == 'JPEG'):
 elif (photo.format == 'PNG'):
 	imprimirDatos(photo.info)
 else:
-	print "Introduce una imagen con extensión JPEG"
+	print "Introduce una imagen con extensión JPEG o PNG"
